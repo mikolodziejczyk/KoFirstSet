@@ -1,5 +1,5 @@
 ﻿export class Repository {
-    getText(input: string, shouldFail: boolean): Promise<string> {
+    public getText(input: string, shouldFail: boolean): Promise<string> {
         let p = new Promise<string>((resolve, reject) => {
             window.setTimeout(() => {
                 if (!shouldFail) {
@@ -15,8 +15,7 @@
         return p;
     }
 
-
-    getLength(input: string, shouldFail: boolean): Promise<number> {
+    public  getLength(input: string, shouldFail: boolean): Promise<number> {
         let p = new Promise<number>((resolve, reject) => {
             window.setTimeout(() => {
                 try {
