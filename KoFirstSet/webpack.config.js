@@ -20,7 +20,8 @@ module.exports = {
         Polyfills: "./AppScripts/Polyfills/polyfills.ts"
     },
     output: {
-        filename: "./dist/MyApp/Scripts/[name].js"
+        path: path.resolve(__dirname, './dist'),
+        filename: "./MyApp/Scripts/[name].js"
     },
     devtool: 'source-map',
     resolve: {
