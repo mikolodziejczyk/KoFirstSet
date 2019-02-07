@@ -17,7 +17,10 @@
         "no-console": false,
         "no-angle-bracket-type-assertion": false,
         "arrow-return-shorthand": false,
-        "max-line-length": false
+        "max-line-length": false,
+        "no-empty": false,
+        "no-trailing-whitespace": false,
+        "no-string-literal": false
     },
     "rulesDirectory": []
 }
