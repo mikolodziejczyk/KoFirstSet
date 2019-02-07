@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Zadanie w toku";
+}
+<div class="container">
+    <div class="jumbotron">
+        <h1>@ViewBag.Title</h1>
+        <div class="row" style="margin-top: 3em">
+            <div class="col-sm-2">
+                <img class="center-block" src="@Url.Content("~/Content/ajax-loader.gif")" />
+            </div>
+            <div class="col-sm-10">
+                <p>Zadanie <em>xxx</em> jest uruchomione. </p>
+                <p>Zostaniesz automatycznie przekierowany do wyniku gdy się zakończy.</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="alert alert-info" role="alert">
+        <strong>Możesz zamknąć tę stronę</strong>, czy też całą przeglądarkę i wrócić tu później. Wyniki będą dostępne jak zawsze.
+        Zadanie wykonuje się na zdalnym komputerze i wyłączenie Twojej przeglądarki lub komputera nie ma na nie wpływu.
+    </div>
+</div>

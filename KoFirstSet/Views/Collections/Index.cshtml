@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@*
+1. Add an observable array, items, to MyApp. This should be a "public" property.
+2. Create an initialize() function that creates Item objects for years from 2010 to 2020 and appends them to the observable array. Call it and apply bindings.
+3. In the table, create a foreach binding.
+    - the first cell should have the index of the item, 1-based.
+    - the second cell should have the year
+    - the third cell should have <a href="javascript:;">Remove</a> (wired later)
+   Test bindings.
+4. In the VM create an addFirst method that adds an item at the beginning of items array (with first year - 1 or 2010 if there are no items). Mind the way the items array is referenced.
+   Wire it to the Add first button.
+5. In the VM create a removeFirst and removeLast methods.
+   Wire them to the respective buttons.
+   Add binding to make the remove buttons disabled when there're no items in the items array.
+6. In the main VM create create a remove() method that removes the specified item.
+   Wire it to the <a> in the last cell. Note that the method is in the parent (at the same time root VM). Try to adapt binding to the first and the second case.
+7. Extend the remove() method so that it requires shift + click.
+8. Add clear() method that removes all items, wire it to the respective button.
+*@
+
+<div class="container-fluid">
+
+    <div class="page-header">
+        <h1>Foreach</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Date</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-1">
+            <button class="btn btn-primary">Add first</button>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-primary">Remove first</button>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-primary">Remove last</button>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-primary">Clear</button>
+        </div>
+    </div>
+
+</div>
+
+@*<script type="text/javascript">
+    function MyApp() {
+        var that = this;
+
+
+        function Item(_year) {
+            this.year = ko.observable(_year);
+        }
+
+        function initialize() {
+            for (var i = 2010; i < 2020; i++) {
+                // new Item(i);
+            }
+        }
+    }
+
+    window.myApp = new MyApp();
+</script>*@
+
+<script src="~/dist/MyApp/Scripts/Collections_Index.js" type="text/javascript"></script>

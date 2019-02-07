@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Direct";
+}
+@*
+   1. Initialize months with a static array: ["January", "February", "March", "April", "June", "July"]
+   2. In the <ul> add a foreach binding to create a <li> for each month. Note that items in the months array are the values directly.
+*@
+
+<div class="container-fluid">
+
+    <div class="page-header">
+        <h1>Binding directly to item</h1>
+    </div>
+
+    <ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    function MyApp() {
+        var that = this;
+
+        this.months = ko.observableArray();
+
+        ko.applyBindings(this);
+    }
+
+    window.myApp = new MyApp();
+</script>
+
+<script src="~/dist/MyApp/Scripts/Collections_Direct.js" type="text/javascript"></script>

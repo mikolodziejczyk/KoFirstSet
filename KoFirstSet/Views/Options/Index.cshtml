@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@*
+
+1. Static options
+You have a select with predefined options.
+Bind the selected option to an observable (create one) in the app.
+In p below display option[value]
+
+2. Simple binding - binding to an array of strings
+You have "cities".
+Create an observable array with cities and bind #simpleBinding to it.
+Below, display the selected value.
+Add a dummy option, "Please select..."
+Add a handler to the button to make a certain (choose any) value selected.
+
+3. Object binding - binding to an array of objects
+You have the people observable array.
+Add a dummy option, "Please select..."
+Bind it to #objectBinding, display the lastName property of the object.
+Below in the p display the lastName of the selected object.
+Mind that the currently selected option can be undefined ("Please select"), adapt the way of displaying the last name so that is goes w/o error.
+In  #objectBinding, change the displayed name to lastName+' '+firstName.
+
+4. Persistent id in the object binding
+Change the binding the way it keeps the id of the selected object rather than the full object (so that it survives a refresh)
+Create an observable (e.g. selectedPersonName) that return firstName+' '+lastName for the selected object from the observable with the selected object id. Remeber that the selected option can be undefined.
+Add a binding to a button that forcibly selects an option, make it select a person with id==2.
+
+
+*@
+
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Options binding</h1>
+    </div>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="staticOptionsBinding">Static options</label>
+            <div class="col-sm-8">
+                <select id="staticOptionsBinding" class="form-control">
+                    <option value="1">First</option>
+                    <option value="2">Second</option>
+                    <option value="3">Third</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">Selected option</label>
+            <div class="col-sm-8">
+                <p class="form-control-static"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="simpleBinding">Simple binding</label>
+            <div class="col-sm-8">
+                <select id="simpleBinding" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">Selected option</label>
+            <div class="col-sm-8">
+                <p class="form-control-static"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="objectBinding">Object binding</label>
+            <div class="col-sm-8">
+                <select id="objectBinding" class="form-control">
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4">Selected option</label>
+            <div class="col-sm-8">
+                <p class="form-control-static"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1">
+            <button class="btn btn-default">Go to Katowice</button>
+        </div>
+        <div class="col-sm-1">
+            <button class="btn btn-default">Select the second person</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/dist/MyApp/Scripts/Options_Index.js"></script>

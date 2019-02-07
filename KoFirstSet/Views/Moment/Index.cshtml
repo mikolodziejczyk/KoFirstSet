@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script src="@Url.Content("~/dist/MyApp/Scripts/Moment_Duration.js")" type="text/javascript"></script>
+
+<div class="page-header">
+    <h1>Moment practice area</h1>
+</div>
+
+<p>
+    Do all the practice in the console.
+</p>
+<div>
+    <pre>
+Moment practice
+
+1. How to install moment
+2. Parse an ISO date
+3. Parse a non-iso date, e.g. 23.1.2016
+4. Create a moment from a Date object
+5. Create a moment that represents now.
+6. Create a moment from numbers representing year, month, day [hour, minute]
+(note month base).
+7. Verify whether parse was successful, check for an invalid date.
+8. How to clone a moment
+9. Format a moment to:
+	a. 2016-12-31
+	b. 2016-12-31 14:12
+	c. 2016-12-31 14:12:45
+	d. marzec 2016
+	e. 21 marca 2016
+	f. poniedziałek, 21 marca 2016 
+	g. Dziś jest poniedziałek, 21 marca 2016  (how to escape some literal text)
+10. Add 15 minutes to a moment, substract 10 hours, add 2 days.
+Can you add fraction of an hour or of a day?
+Can you add a negative number?
+11. Create two moments, one for now and one two hours ahead. Write an expression that checks whether:
+	a. m1>m2, m1>=m2, 
+	b. m1=m2 or m2>m1 taking into account only the year, month and day
+12. Retrieve the year, month or hour part of a moment. What is the base for individual parts?
+13. Set hours and minutes of a moment to a fixed value.
+14. How do you enable internationalization of a moment?
+15. Where locale files for a moment are placed by convention?
+16. What is the current locale? How to change it - overview?
+
+Duration practice
+
+1. Do durations have a sign?
+2. Are durations mutable?
+3. What is the top part date part of a duration (vs TimeSpan)
+4. Create a duration from a value in ms
+5. Create two moments, one for now and one 15 minutes back; create a duration from the difference between moments.
+6. Create a duration that represents
+	a. 15 minutes,
+	b. -1 hour,
+	c. 3 days.
+Can you create duration that represents 1,5 day (decimal) or -1,5 hours?
+7. Retireve duration counterparts of TimeSpan.Minutes and TotalMinutes, Hours and TotalHours, Days and TotalDays, etc.
+How do these values look like in negative durations.
+8. Create two durations, e.g. 15 minutes and 1 hour. Add them (adding durations)
+9. Add -15 minutes to another duration (adding a timespan to a duration)
+10. Add a duration to a moment.
+	a. problems with days and months etc.
+        </pre>
+</div>

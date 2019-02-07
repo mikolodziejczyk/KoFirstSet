@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+<style type="text/css">
+    input.shortNumber {
+        width: 10em;
+        display: inline-block;
+        text-align: right;
+    }
+</style>
+
+@*
+1. Use the markup fragment to create a entry-template (bind date to the label, amount and discount to inputs)
+2. Display entries inside the form-horizontal with this template; use containerless syntax
+3. Ensure that each input has an unique name assigned (for validation, etc.)
+4. In the save hander, serialize the entries to a string and display them in #saveTarget
+*@
+
+@* 
+   <div class="form-group">
+        <label class="control-label col-sm-4"></label>
+        <div class="col-sm-8">
+            <label class="control-label">Amount</label>
+            <input type="text" class="form-control shortNumber" />
+            <label class="control-label">Discount</label>
+            <input type="text" class="form-control shortNumber" />
+        </div>
+    </div>
+*@
+
+
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Edit template practice</h1>
+    </div>
+
+    <div class="form-horizontal">
+
+        <!-- display here -->
+
+        <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-4">
+                <button class="btn btn-default" data-bind="click: save">Save</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-8 col-sm-offset-4">
+                <p id="saveTarget"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ecmascript" src="~/dist/MyApp/Scripts/Templates_Edit.js"></script>
+
+@*
+<script type="text/javascript">
+    function myApp() {
+        var that = this;
+
+        this.entries = ko.observableArray();
+
+        for (var i = 1; i <= 12; i++) {
+            this.entries.push(new Entry("2015-" + i.toString()));
+        }
+
+        this.entries()[0].amount(10);
+        this.entries()[0].discount(5);
+
+        this.save = function () {
+            $("#saveTarget").text('Save entries as a string');
+        }
+
+        ko.applyBindings(this);
+
+        function Entry(_date) {
+            var that = this;
+
+            this.date = _date;
+            this.amount = ko.observable();
+            this.discount = ko.observable();
+        }
+    };
+
+    var _myApp = new myApp();
+</script>
+
+*@

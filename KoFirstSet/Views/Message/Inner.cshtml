@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Inner";
+}
+
+<div class="form-inline">
+    <input id="message" class="form-control" type="text" placeholder="message" style="width: 20em" />
+    <input id="code" class="form-control" type="text" placeholder="code" style="width: 5em" />
+    <button id="send" class="btn btn-primary">Send</button>
+</div>
+
+<script type="text/javascript">
+    window.myCounter = 2;
+
+    $("#send").click(function () {
+        var message = $("#message").val();
+        var code = $("#code").val();
+
+        var msg = {
+            message: message,
+            code: code,
+            id: window.myCounter++,
+        };
+
+       
+    });
+
+</script>

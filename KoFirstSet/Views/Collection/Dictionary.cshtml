@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Dictionary";
+}
+
+<h1>Array LINQ</h1>
+
+<div class="container-fluid">
+
+    <div id="result" class="well">
+        Display your results here in #result
+        <br />
+        $("#result").text(JSON.stringify(r))
+    </div>
+
+    <pre>
+<script type="text/javascript" style="display: block">
+    var d = {
+        1: { firstName: "John", lastName: "Doe" }, 2: { firstName: "Jennifer", lastName: "Smith" },
+        3: { firstName: "Tom", lastName: "Smith" }, 4: { firstName: "Sue", lastName: "Smith" }
+    };
+</script>
+    </pre>
+
+    <pre>
+    <b>window.companies</b> - contains an array of objects, like:
+
+    {
+    "CompanyId":  5267,
+    "AddressId":  6323,
+    "Acronym":  "MIRIONS",
+    "Name1":  "Rowery Mirions sp. z o.o.",
+    "Nip":  "6770065406",
+    "IsSupplier":  true,
+    "IsClient":  true,
+    "Address1":  "Al. Jana Pawła II 40",
+    "Address2":  "",
+    "PostalCode":  "31-864",
+    "City":  "Kraków",
+    "CountryCode":  "PL",
+    "Country":  "Polska",
+    "Province":  ""
+    }
+</pre>
+
+    <script type="text/ecmascript">
+        $.getJSON("/SampleContent/companies.js", function (d) { window.companies = d; });
+    </script>
+
+    <pre>
+An object as a dictionary.
+
+
+All tasks in the console.
+
+1. How to create:
+ a) an empty dictionary
+      - truly empty dictionary, w/o any build-in methods
+ b) an initialized dictionary (with some entries)
+
+2. Cloning: you have a dictionary d. Clone it
+
+
+3. Add: Add a value to d. 5: { firstName: "Patti", lastName: "Smith" }
+
+4. ContainsKey: Check whether the d contains 4 and 7.
+
+5. RemoveKey: Remove the entry with the 4 key.
+
+6. Count: Check how many entries d keeps.
+
+7. ToDictionary: You have window.companies. Create a dictionary where CompanyId is the key and the whole 
+object is the value. Name it "cd".
+
+
+
+8. iterating: Iterate the key/value pairs in d, e.g.
+   console.log(key + " " + value.firstName + " "+value.lastName);
+
+9. Select: From "cd" - the dictionary of companies - create an array with company acronyms
+
+
+10. Select into another dictinoary: From "cd" - the dictionary of companies - create a dictionary that keeps 
+id => acronym
+
+
+11. Merging dictionaries: You have 
+    d2 = { 5: { firstName: "Patti", lastName: "Smith" }, 6: { firstName: "Tori", lastName: "Amos" } };
+    Append it into d.
+
+
+12. ToLookup: How you can represent a lookup in js? Create a lookup from companies where City is the key and 
+company objects are values.
+
+
+
+13. AllKeys and Values: From d get, as an array:
+    - all keys
+    - all values
+
+14. Dictionary vs key/value tuples
+
+15. Other data types:
+    - create a stack with strings: add to a stack "Tom", "Dick", "Harry", retrieve them
+    - the same for a queue
+
+
+    </pre>
+
+</div>

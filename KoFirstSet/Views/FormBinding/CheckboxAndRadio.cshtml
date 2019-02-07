@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Text";
+}
+
+<script type="text/javascript" src="~/dist/MyApp/Scripts/FormBinding_CheckboxAndRadio.js"></script>
+
+@*
+1. Create an app
+2. Individual checkboxes - binding to individual checkboxes, each one has its own property
+Create an observable and bind it to the checkbox; make the alert visible when the checkbox is checked.
+3. Radio group - binding a radio group to an observable
+Create an appropriate observable and bind the radio group to it so that the observable reflects the currently selected option.
+Bind the observable to the second row of radios so that both rows stay in sync.
+In the div The selected value is: show the currently selected radio value. Use containerless syntax.
+4. Checkbox group - binding a group of checkboxes to one property
+Create an appropriate property (boservable one) and bind checkboxes to it so that the property reflects all checked options.
+Bind the same property to the second row,  so that both rows stay in sync.
+Give the property an initial value.
+5. Subscribing to the observables
+Create a function that sorts the options and joins them, comma separated.
+The value should be put into #checkboxTarget. This function imitates that we are doing some kind of refesh.
+Call it when the app runs.
+The subscribe to the property that keeps values from checkbox group and update the value every time the checkboxes change.
+*@
+
+
+<div class="page-header">
+    <h1>Testing checkbox and radio bindings</h1>
+</div>
+<div class="container-fluid">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="title" class="control-label col-sm-4">Individual checkboxes</label>
+            <div class="col-sm-8">
+                <label class="checkbox">
+                    <input type="checkbox">
+                    Show alert
+                </label>
+                <div class="alert alert-success" role="alert">
+                    <p>Hello, you've successfully shown the alert.</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="control-label col-sm-4">Radio group</label>
+            <div class="col-sm-8">
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" value="option1">
+                    1
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" value="option2">
+                    2
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" value="option3">
+                    3
+                </label>
+                <div>
+                    The selected value is: show here the selected value using containerless syntax
+                </div>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions2" value="option1">
+                    1
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions2" value="option2">
+                    2
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions2" value="option3">
+                    3
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title" class="control-label col-sm-4">Checkbox group</label>
+            <div class="col-sm-8">
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="option1">
+                    1
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="option2">
+                    2
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="option3">
+                    3
+                </label>
+                <div>
+                    Put combined values here: <span id="checkboxTarget">Put combined checked options inside</span>
+                </div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="option1">
+                    1
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="option2">
+                    2
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" value="option3">
+                    3
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

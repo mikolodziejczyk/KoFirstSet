@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Array LINQ";
+}
+
+<h1>Array LINQ</h1>
+
+<div class="container-fluid">
+
+    <div id="result" class="well">
+        Display your results here in #result
+        <br />
+        $("#result").text(JSON.stringify(r))
+    </div>
+
+    <pre>
+<script type="text/javascript" style="display: block">
+    var a1 = ["Tom", "Dick", "Harry", "Sue", "Jenny", "Patti", "Katie"];
+</script>
+    </pre>
+
+<pre>
+    <b>window.companies</b> - contains an array of objects, like:
+
+    {
+    "CompanyId":  5267,
+    "AddressId":  6323,
+    "Acronym":  "MIRIONS",
+    "Name1":  "Rowery Mirions sp. z o.o.",
+    "Nip":  "6770065406",
+    "IsSupplier":  true,
+    "IsClient":  true,
+    "Address1":  "Al. Jana Pawła II 40",
+    "Address2":  "",
+    "PostalCode":  "31-864",
+    "City":  "Kraków",
+    "CountryCode":  "PL",
+    "Country":  "Polska",
+    "Province":  ""
+    }
+</pre>
+
+    <script type="text/ecmascript">
+        $.getJSON("/SampleContent/companies.js", function (d) { window.companies = d; });
+    </script>
+
+</div>

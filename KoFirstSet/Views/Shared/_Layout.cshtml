@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" type="text/css" />
+
+    @if (this.Request.UserAgent.Contains("Trident") || this.Request.UserAgent.Contains("MSIE") ||  KoFirstSet.Properties.Settings.Default.AlwaysUsePolyfills)
+    { 
+    <script src="@Url.Content("~/dist/MyApp/Scripts/polyfills.js")" type="text/javascript"></script>
+    }
+
+    <script src="@Url.Content("~/dist/MyApp/Scripts/bundle.min.js")" type="text/javascript"></script>
+@*   <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>*@
+   @* <script src="@Url.Content("~/Scripts/moment.js")" type="text/javascript"></script>*@
+@*    <script src="@Url.Content("~/Scripts/moment_i18n/pl.js")" type="text/javascript"></script>*@
+
+
+    @*<script src="@Url.Content("~/Scripts/jquery-migrate-1.2.1.min.js")" type="text/javascript"></script>*@
+   @* <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Scripts/knockout-3.4.0.js")" type="text/javascript"></script>
+@*   <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>*@
+  @* <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
+   @* <script src="@Url.Content("~/Scripts/jsurl-1.2.2.min.js")" type="text/javascript"></script>*@
+
+    <link href="@Url.Content("~/Content/bootstrap-datetimepicker.min.css")" rel="stylesheet" />
+@*    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.min.js")"></script>*@
+@*    <script src="@Url.Content("~/Scripts/sprintf.min.js")"></script>*@
+@*    <script src="@Url.Content("~/Scripts/underscore.js")"></script>*@
+
+
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@*
+You have a collection of person. A person is inactive if he/she has a to date defined.
+1. Create a template for a person, at this point w/o addres
+   - the template should be wrapped with  <li class="list-group-item"></li>
+   - display a static text "Inactive" if to is defined, "Active" otherwise
+2. Display people with this template inside ul.list-group
+3. Create an address template, just address1+' '+city
+4. Display address template inside the person template as a template for a single object. Display it conditionally, only if the address is specified.
+   Alter the way the person object is prepared (the Entry function) so that templates w/o address renders correctly; w/o correction the template will fail.
+5. (Referencing the parent template by name) Assign a name to the parent template and in the address template display the first and last name, in the way: John Doe, Some street 1, Some city
+6. (Dynamic template selection) Create two new templates active-person-template and inactive-person-template, with .list-group-item-success and .list-group-item-danger applied to li.list-group-item, respectively (and possibly other differences, e.g. lack of "to").
+   In the vm create a function that will select the appropriate template based on whether "to" is defined.
+   When rendering templates, delegate the template selection to this function.
+7. (Dynamic template change) Click the button and check whether the template changed dynamically.
+*@
+
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Display templates</h1>
+    </div>
+
+    <div class="row">
+        <ul class="list-group">
+            <!-- Display templates here -->
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1">
+            <button class="btn btn-default" data-bind="click: makeFirstInactive">Make the first person inactive</button>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/ecmascript" src="~/dist/MyApp/Scripts/Templates_Index.js"></script>
+@*
+<script type="text/javascript">
+    function myApp() {
+        var that = this;
+
+        this.people = ko.observableArray();
+
+        this.people.push(new Entry("John", "Doe", "2010-01-01"));
+        this.people.push(new Entry("Jane", "Smith", "2010-01-01", "2015-12-01", "Unknown 1/1", "UnknownCity"));
+        this.people.push(new Entry("Tom", "Smith", "2010-01-01", "2015-12-01"));
+
+        this.makeFirstInactive = function () {
+            this.people()[0].to("2016-01-31");
+        }
+
+        ko.applyBindings(this);
+
+        function Entry(_firstName, _lastName, _from, _to, _address1, _city) {
+            var that = this;
+
+            this.firstName = ko.observable(_firstName);
+            this.lastName = ko.observable(_lastName);
+            this.from = ko.observable(_from);
+            this.to = ko.observable(_to);
+            if (_address1) {
+                this.address = {
+                    address1: _address1,
+                    city: _city
+                }
+            }
+        }
+    };
+
+    var _myApp = new myApp();
+</script>
+*@
