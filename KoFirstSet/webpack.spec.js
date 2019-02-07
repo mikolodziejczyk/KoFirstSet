@@ -10,7 +10,8 @@ module.exports = {
         Polyfills: "./AppScripts/Polyfills/polyfills.ts"
     },
     output: {
-        filename: "./spec/[name].js"
+        path: path.resolve(__dirname, './spec'),
+        filename: "./[name].js"
     },
     devtool: 'source-map',
     resolve: {

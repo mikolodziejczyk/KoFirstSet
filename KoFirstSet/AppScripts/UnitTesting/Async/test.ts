@@ -1,4 +1,4 @@
-﻿import "./consumeAsync.spec"
-import "./composeAsync.spec"
-import "./repository.spec"
-import "./sequentialDownload.spec"
+﻿import "./composeAsync.spec";
+import "./consumeAsync.spec";
+import "./repository.spec";
+import "./sequentialDownload.spec";
