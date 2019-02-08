@@ -1,14 +1,12 @@
 ﻿export class SequentialDownload {
-    constructor(private shouldFail: boolean) {
+    public static failingItem: string = "Patti";
+    public static itemsSource: string[] = ["Tom", "Dick", "Harry", "Sue", SequentialDownload.failingItem, "Jenny", "John", "Adam", "Ann", "Betti"];
+    private items: string[];
+    constructor (private shouldFail: boolean) {
         this.items = SequentialDownload.itemsSource.slice();
     }
 
-    static failingItem: string = "Patti";
-    static itemsSource : string[] = ["Tom", "Dick", "Harry", "Sue", SequentialDownload.failingItem, "Jenny", "John", "Adam", "Ann", "Betti"];
-    private items: string[];
-
-
-    getData(): Promise<string> {
+    public getData(): Promise<string> {
         let p = new Promise<string>((resolve, reject) => {
             window.setTimeout(() => {
                 let item = this.items.shift() || null;
@@ -23,5 +21,4 @@
         });
         return p;
     }
-
 }
