@@ -9,7 +9,8 @@
     "watch": "webpack --watch --config webpack.dev.js",
     "prod": "webpack --config webpack.prod.js",
     "watchtest": "webpack --watch --config webpack.spec.js",
-    "karmawatch": "karma start --single-run false --auto-watch true"
+    "karmawatch": "karma start --single-run false --auto-watch true",
+    "servepractice": "light-server -s ./ -b localhost -w ./dist/** -p 8080"
   },
   "author": "",
   "license": "ISC",
@@ -29,13 +30,15 @@
     "karma-ie-launcher": "^1.0.0",
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "0.2.2",
+    "light-server": "^2.6.0",
     "moment": "^2.22.2",
     "ts-loader": "^4.1.0",
     "typescript": "^2.9.2",
     "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "^4.29.1",
     "webpack-cli": "^3.2.3",
-    "webpack-merge": "^4.1.1"
+    "webpack-merge": "^4.1.1",
+    "shx": "^0.3.2"
   },
   "dependencies": {
     "@types/domurl": "0.0.4",
