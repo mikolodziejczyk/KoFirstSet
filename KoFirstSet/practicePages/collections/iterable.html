@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Iterable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <script src="/dist/MyApp/Scripts/bundle.min.js" type="text/javascript"></script>
+    <script src="/Scripts/knockout-3.4.0.js" type="text/javascript"></script>
+    <link href="/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Iterable</h1>
+    <pre>
+        1. Iterable&lt;T&gt; interface
+            - what it defines, couterpart of which interface in .NET
+            - what are symbols?
+          2. Iterator&lt;T&gt; / iterator protocol
+            - what it defines (overview), couterpart of which interface in .NET
+            - what is the internal procedure of iteration, the IteratorResult&lt;T&gt; interface, when starts and when ends
+            - when new iteration starts
+          3. What can you iterate: Iterable&lt;T&gt; or Iterator&lt;T&gt;?
+          4. What are required config settings for ts.
+             - downlevelIteration - what it is?
+             - lib: "es2015.collection" vs "es2015.iterable"
+          5. Iteration
+             - iterate and log every member of the set, map and map values.
+          6. Converting an iterable to array 
+             - convert the set to array, log
+             - convert the map keys to array, log
+          7. Using the spread operator
+             - create an array with "Sue", then all set members and "Dick"
+             - create an array with all the map values and "Patti" appended
+          
+          8. Plain generator
+             - create a generator method, getSomeNames, that takes a prefix (a string) and returns a few names, each 
+          prefixed
+             - explicitly specify the iterated type
+             - iterate the results and log them
+          9. Breaking iteration
+             - when inside for .. of loop you break after e.g. the second result, what happens: which code in the 
+          generator method is executed? 
+             - What if the yield statement was inside try .. finally block? What with statements after finally {} in 
+          this case?
+          10. Throwing exception during iteration
+             - what happens when you throw an exeception inside a generator method?
+               - what if this was wrapped in try .. catch block inside the generator?
+               - what if not? how try .. catch block in the consuming code affect this?
+             - what happens when you throw an exeception during iteration but in the consuming code rather that in the 
+          generator method?
+             - injecting an exception into the generator from the consuming code - overview
+          
+          11. Generator method type
+             - in the constructor create a local variable with a generator method. The method should yield values from 
+          0 to 10 in the loop.
+             - specify the return type explicitly
+             - consume the result with the spread operator and log the result
+          
+          12. Creating iterable object
+             - make the whole MyApp class iterable so that you can consume it as an iterable, in the method return a 
+          few names
+             - consume it with Array.from
+          
+          13. Returning iteration results from another method
+            - in the method from the previous point to the existing results add results from getSomeNames, iterated 
+          (not via a collection).
+          
+    </pre>
+</body>
+</html>
