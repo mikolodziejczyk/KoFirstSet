@@ -9,7 +9,7 @@
     }
 
     log(s: string) {
-        document.write(`${s}<br/>`)
+        document.write(`${s}<br/>`);
     }
 
     logObject(o: any, lead: string) {
@@ -17,4 +17,4 @@
     }
 }
 
-let myApp = new MyApp;
+let myApp = new MyApp();
