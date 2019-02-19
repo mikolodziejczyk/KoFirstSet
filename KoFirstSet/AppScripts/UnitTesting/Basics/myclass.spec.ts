@@ -1,25 +1,25 @@
-﻿import {MyClass} from './myclass'
+﻿import {MyClass} from './myclass';
 
 describe("This is a test suite", function () {
-    var a;
+    // var a;
 
-    it("A passing test", function () {
-        a = false;
+    // it("A passing test", function () {
+    //     a = false;
 
-        expect(a).toBe(false);
-    });
+    //     expect(a).toBe(false);
+    // });
 
-    it("Another passing test", function () {
-        a = false;
+    // it("Another passing test", function () {
+    //     a = false;
 
-        expect(a).toBe(false);
-    });
+    //     expect(a).toBe(false);
+    // });
 
-    it("A class test", function () {
-        let mc = new MyClass();
-        let r = mc.add(1,2);
+    // it("A class test", function () {
+    //     let mc = new MyClass();
+    //     let r = mc.add(1,2);
 
-        expect(r).toBe(3);
-    });
+    //     expect(r).toBe(3);
+    // });
 
 });
