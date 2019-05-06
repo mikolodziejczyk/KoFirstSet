@@ -11,6 +11,8 @@ module.exports = {
         DateTimePickerRaw_Index: "./AppScripts/DateTimePickerRaw/Index/app.ts",
         DateTimePicker_Index: "./AppScripts/DateTimePicker/Index/app.ts",
         Moment_Duration: "./AppScripts/Moment/Duration/app.ts",
+        Message_Index: "./AppScripts/Message/Index/app.ts",
+        Message_Inner: "./AppScripts/Message/Inner/app.ts",
         DomUrl_JsUrlTest: "./AppScripts/DomUrl/JsUrlTest/app.ts",
         Options_Index: "./AppScripts/Options/app.ts",
         Templates_Index: "./AppScripts/Templates/Index/app.ts",
