@@ -396,6 +396,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="AppScripts\Iframe\Content\app.ts" />
+    <TypeScriptCompile Include="AppScripts\Iframe\DialogHost\app.ts" />
+    <TypeScriptCompile Include="AppScripts\Iframe\Index\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\Index\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\Inner\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\message.ts" />
