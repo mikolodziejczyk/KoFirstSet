@@ -308,6 +308,8 @@
     <Content Include="webpack.prod.js" />
     <Content Include="AppScripts\tsconfig.json" />
     <Content Include="readme.md" />
+    <Content Include="AppScripts\XmlHttpRequest\Fundamentals\answers.md" />
+    <Content Include="AppScripts\XmlHttpRequest\Fundamentals\tasks.md" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -445,7 +447,6 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
-
   <PropertyGroup>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
