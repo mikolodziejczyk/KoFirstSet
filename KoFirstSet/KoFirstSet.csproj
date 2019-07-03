@@ -178,6 +178,7 @@
     <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="Controllers\UsingNodeModulesController.cs" />
     <Compile Include="Controllers\ValueBindingController.cs" />
+    <Compile Include="Controllers\XmlHttpRequestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -387,6 +388,8 @@
     <Content Include="Views\IFrame\DialogHost.cshtml" />
     <Content Include="Views\UsingNodeModules\Index.cshtml" />
     <Content Include="Views\Collection\Iterable.cshtml" />
+    <Content Include="Views\XmlHttpRequest\Index.cshtml" />
+    <Content Include="Views\XmlHttpRequest\Fundamentals.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -402,6 +405,7 @@
     <TypeScriptCompile Include="AppScripts\Message\Index\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\Inner\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\message.ts" />
+    <TypeScriptCompile Include="AppScripts\XmlHttpRequest\Fundamentals\app.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -441,4 +445,8 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+
+  <PropertyGroup>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+  </PropertyGroup>
 </Project>
