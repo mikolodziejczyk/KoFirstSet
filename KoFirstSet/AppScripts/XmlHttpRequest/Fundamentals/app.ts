@@ -11,8 +11,12 @@
 
         let inputText = (<HTMLInputElement>document.getElementById("myText")).value;
 
+        // we prepare data here
+        let data: any = {};
+        data.data = inputText;
+
         try {
-            let r = await this.getData(inputText);
+            let r = await this.postData("http://localhost:50610/XmlHttpRequest/Fundamentals_Post", data);
             console.log("Data retrieved.");
             console.log(r);
         }
@@ -21,13 +25,13 @@
         }
     };
 
-    getData(inputData: string): Promise<any> {
+    postData(uri: string, data: any): Promise<any> {
         let promise = new Promise<any>((resolve, reject) => {
             let r: XMLHttpRequest = new XMLHttpRequest();
 
             r.onreadystatechange = function () {
-                if (r.readyState == 4) {
-                    if (r.status == 200) {
+                if (r.readyState === 4) {
+                    if (r.status === 200) {
                         let response = JSON.parse(r.responseText);
                         resolve(response);
                     }
@@ -37,48 +41,12 @@
                 }
             }
 
-            let data: any = {};
-            data.data = inputData;
-            let text = JSON.stringify(data);
-
-            r.open("POST", "http://localhost:50610/XmlHttpRequest/Fundamentals_Post");
+            r.open("POST", uri);
             r.setRequestHeader("content-type", "application/json");
-            r.send(text);
+            r.send(JSON.stringify(data));
         });
 
         return promise;
-    }
-
-    send = () => {
-        console.log("Send clicked");
-
-        let inputText = (<HTMLInputElement>document.getElementById("myText")).value;
-
-        let r: XMLHttpRequest = new XMLHttpRequest();
-
-        r.onreadystatechange = function () {
-            console.log(r.readyState);
-            if (r.readyState == 4) {
-                if (r.status == 200) {
-                    console.log(r.responseText);
-                    let response = JSON.parse(r.responseText);
-                    console.log(response);
-                    //console.log(r.response);
-                    //console.log(typeof(r.response));
-                }
-                else {
-                    console.log("Failed");
-                }
-            }
-        }
-
-        let data: any = {};
-        data.data = inputText;
-        let text = JSON.stringify(data);
-
-        r.open("POST", "http://localhost:50610/XmlHttpRequest/Fundamentals_Post");
-        r.setRequestHeader("content-type", "application/json");
-        r.send(text);
     }
 }
 

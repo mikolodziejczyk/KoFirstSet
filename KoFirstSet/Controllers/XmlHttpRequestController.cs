@@ -27,7 +27,7 @@ namespace KoFirstSet.Controllers
             if (data == "Hello") throw new InvalidOperationException("Incorrect data.");
 
             var r = new { data = data+"!", otherValue = data.Length };
-            return new JsonResult() { Data = r, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult() { Data = r };
         }
     }
 }
