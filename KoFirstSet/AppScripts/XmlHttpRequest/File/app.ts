@@ -1,4 +1,5 @@
-﻿
+﻿import { sprintf } from "sprintf-js";
+
 interface QueryStringData {
     id: string;
     name: string;
@@ -25,8 +26,20 @@ export class MyApp {
 
         console.log(`Posting to ${url.toString()}`);
 
+        let progressCallback = (event: ProgressEvent): void => {
+            if (event.lengthComputable) {
+                // console.log(`Progress: ${event.loaded}/${event.total}`);
+                let message = sprintf("Uploading: %.1f%%", (event.loaded * 100) / event.total);
+                console.log(message);
+
+            }
+            else {
+                console.log('Length not computable.');
+            }
+        }
+
         try {
-            let r = await this.postData(url.toString(), file);
+            let r = await this.postData(url.toString(), file, progressCallback);
             console.log("Upload complete.");
             console.log(r);
         }
@@ -36,14 +49,14 @@ export class MyApp {
 
     };
 
-    postData(uri: string, blob: Blob): Promise<any> {
+    postData(uri: string, blob: Blob, progressCallback?: (event: ProgressEvent) => void): Promise<any> {
         let promise = new Promise<any>((resolve, reject) => {
-            let r: XMLHttpRequest = new XMLHttpRequest();
+            let request: XMLHttpRequest = new XMLHttpRequest();
 
-            r.onreadystatechange = function () {
-                if (r.readyState === 4) {
-                    if (r.status === 200) {
-                        let response = JSON.parse(r.responseText);
+            request.onreadystatechange = function () {
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                        let response = JSON.parse(request.responseText);
                         resolve(response);
                     }
                     else {
@@ -52,9 +65,14 @@ export class MyApp {
                 }
             }
 
-            r.open("POST", uri);
-            r.setRequestHeader("content-type", "application/octet-stream");
-            r.send(blob);
+            // the progressCallback must be set before request.open()!
+            if (progressCallback) {
+                request.upload.onprogress = progressCallback;
+            }
+
+            request.open("POST", uri);
+            request.setRequestHeader("content-type", "application/octet-stream");
+            request.send(blob);
         });
 
         return promise;
