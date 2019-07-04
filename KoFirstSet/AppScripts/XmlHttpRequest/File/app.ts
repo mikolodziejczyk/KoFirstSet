@@ -1,4 +1,10 @@
-﻿export class MyApp {
+﻿
+interface QueryStringData {
+    id: string;
+    name: string;
+}
+
+export class MyApp {
 
     fileInput: HTMLInputElement = <HTMLInputElement>document.getElementById("myFile");
 
@@ -11,10 +17,16 @@
     fileChanged = async (event: UIEvent) => {
         console.log("File selected");
 
-        let data: Blob = this.fileInput.files[0];
+        let file: File = this.fileInput.files[0];
+
+        let url: Url<QueryStringData> = new Url<QueryStringData>("http://localhost:50610/XmlHttpRequest/File_Post")
+        url.query.id = "2BC2D0DC-9860-4434-ACF9-529F0990F153";
+        url.query.name = file.name;
+
+        console.log(`Posting to ${url.toString()}`);
 
         try {
-            let r = await this.postData("http://localhost:50610/XmlHttpRequest/File_Post?id=2BC2D0DC-9860-4434-ACF9-529F0990F153&name=test.dat", data);
+            let r = await this.postData(url.toString(), file);
             console.log("Upload complete.");
             console.log(r);
         }
