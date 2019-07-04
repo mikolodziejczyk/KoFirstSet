@@ -392,6 +392,7 @@
     <Content Include="Views\Collection\Iterable.cshtml" />
     <Content Include="Views\XmlHttpRequest\Index.cshtml" />
     <Content Include="Views\XmlHttpRequest\Fundamentals.cshtml" />
+    <Content Include="Views\XmlHttpRequest\File.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +408,7 @@
     <TypeScriptCompile Include="AppScripts\Message\Index\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\Inner\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\message.ts" />
+    <TypeScriptCompile Include="AppScripts\XmlHttpRequest\File\app.ts" />
     <TypeScriptCompile Include="AppScripts\XmlHttpRequest\Fundamentals\app.ts" />
   </ItemGroup>
   <ItemGroup>

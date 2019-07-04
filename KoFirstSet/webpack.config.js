@@ -23,6 +23,7 @@ module.exports = {
         FormBinding_CheckboxAndRadio: "./AppScripts/FormBinding/CheckboxAndRadio/CheckboxAndRadio.ts",
         Fundamentals_Index: "./AppScripts/Fundamentals/app.ts",
         XmlHttpRequest_Fundamentals: "./AppScripts/XmlHttpRequest/Fundamentals/app.ts",
+        XmlHttpRequest_File: "./AppScripts/XmlHttpRequest/File/app.ts",
         Polyfills: "./AppScripts/Polyfills/polyfills.ts"
     },
     output: {
