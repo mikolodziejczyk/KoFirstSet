@@ -39,12 +39,14 @@ namespace KoFirstSet.Controllers
         [HttpPost]
         public ActionResult File_Post(string id, string name)
         {
+            if (name.StartsWith("K")) throw new InvalidOperationException("Incorrect data.");
+
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), name);
 
             using (FileStream fs = System.IO.File.Create(path))
             {
-                this.Request.InputStream.CopyTo(fs);
                 this.Request.InputStream.Position = 0;
+                this.Request.InputStream.CopyTo(fs);
             }
 
             var r = new { id = id, path = path };

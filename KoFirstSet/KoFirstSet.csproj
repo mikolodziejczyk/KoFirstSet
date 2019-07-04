@@ -310,6 +310,8 @@
     <Content Include="readme.md" />
     <Content Include="AppScripts\XmlHttpRequest\Fundamentals\answers.md" />
     <Content Include="AppScripts\XmlHttpRequest\Fundamentals\tasks.md" />
+    <Content Include="AppScripts\XmlHttpRequest\File\tasks.md" />
+    <Content Include="AppScripts\XmlHttpRequest\File\answer.md" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />

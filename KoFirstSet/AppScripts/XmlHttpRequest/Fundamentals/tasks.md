@@ -10,7 +10,7 @@ You have XmlHttpRequestController.Fundamentals_Post that accepts objects like:
 ```
 For data==="Hello" it returns an error.
 
-In AppScripts / XmlHttpRequest / app.ts
+In AppScripts / XmlHttpRequest / Fundamentals / app.ts
 
 1. Create a method:
 ```
