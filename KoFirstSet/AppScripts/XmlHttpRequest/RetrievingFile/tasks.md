@@ -1,4 +1,4 @@
-﻿Uploading a file with XmlHttpRequest
+﻿Downloading a file with XmlHttpRequest
 ---
 
 Go to: http://localhost:50610/XmlHttpRequest/RetrievingFile
