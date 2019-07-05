@@ -59,7 +59,7 @@ namespace KoFirstSet.Controllers
             return View();
         }
 
-        // [HttpPost]
+        [HttpPost]
         public ActionResult RetrievingFile_Post(int id)
         {
             string[] registeredNames = new string[] { "MyWork.jpg", "Tasks.jpg", "connections.svg" };

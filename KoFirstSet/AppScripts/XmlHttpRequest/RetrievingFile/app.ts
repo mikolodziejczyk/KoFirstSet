@@ -1,4 +1,7 @@
-﻿export class MyApp {
+﻿import { sprintf } from "sprintf-js";
+
+
+export class MyApp {
 
     dataUrl: string = null;
 
@@ -18,10 +21,21 @@
         let data: any = {};
         data.id = +inputText;
 
+        let progressCallback = (event: ProgressEvent): void => {
+            if (event.lengthComputable) {
+                let message = sprintf("Downloading: %.1f%%", (event.loaded * 100) / event.total);
+                console.log(message);
+            }
+            else {
+                console.log('Length not computable.');
+            }
+
+        }
+
         let r: Blob = null;
 
         try {
-            r = await this.postData("http://localhost:50610/XmlHttpRequest/RetrievingFile_Post", data);
+            r = await this.postData("http://localhost:50610/XmlHttpRequest/RetrievingFile_Post", data, progressCallback);
             console.log("Data retrieved.");
         }
         catch (e) {
@@ -44,11 +58,14 @@
 
             let img: HTMLImageElement = <HTMLImageElement>document.getElementById("previewImg");
             img.src = this.dataUrl;
+
+            let downloadLink: HTMLAnchorElement = <HTMLAnchorElement>document.getElementById("downloadLink");
+            downloadLink.href = this.dataUrl;
         }
 
     };
 
-    postData(uri: string, data: any): Promise<Blob> {
+    postData(uri: string, data: any, progressCallback?: (event: ProgressEvent) => void): Promise<Blob> {
         let promise = new Promise<any>((resolve, reject) => {
             let request: XMLHttpRequest = new XMLHttpRequest();
 
@@ -61,6 +78,11 @@
                         reject();
                     }
                 }
+            }
+
+            // the progressCallback must be set before request.open()!
+            if (progressCallback) {
+                request.onprogress = progressCallback;
             }
 
             request.open("POST", uri);
