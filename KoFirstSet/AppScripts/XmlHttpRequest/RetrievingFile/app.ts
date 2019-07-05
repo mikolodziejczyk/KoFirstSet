@@ -21,32 +21,21 @@ export class MyApp {
         let data: any = {};
         data.id = +inputText;
 
-        let progressCallback = (event: ProgressEvent): void => {
-            if (event.lengthComputable) {
-                let message = sprintf("Downloading: %.1f%%", (event.loaded * 100) / event.total);
-                console.log(message);
-            }
-            else {
-                console.log('Length not computable.');
-            }
-
-        }
+        // prepare the progressCallback here
+        /*
+        let message = sprintf("Downloading: %.1f%%", downloadPercent);
+        console.log(message);
+         */
+        // let progressCallback = (event: ProgressEvent): void => {
 
         let r: Blob = null;
 
-        try {
-            r = await this.postData("http://localhost:50610/XmlHttpRequest/RetrievingFile_Post", data, progressCallback);
-            console.log("Data retrieved.");
-        }
-        catch (e) {
-            console.log("Data retrieval error.");
-        }
+        // call postData here with d as JSON payload, http://localhost:50610/XmlHttpRequest/RetrievingFile_Post
+
 
         if (r) {
 
-            // this is required when retrieving an svg image
-            // r = new Blob([r], { type: 'image/svg+xml' });
-
+            // adjust the response for an svg image here
 
             if (this.dataUrl) {
                 URL.revokeObjectURL(this.dataUrl);
@@ -64,35 +53,6 @@ export class MyApp {
         }
 
     };
-
-    postData(uri: string, data: any, progressCallback?: (event: ProgressEvent) => void): Promise<Blob> {
-        let promise = new Promise<any>((resolve, reject) => {
-            let request: XMLHttpRequest = new XMLHttpRequest();
-
-            request.onreadystatechange = function () {
-                if (request.readyState === 4) {
-                    if (request.status === 200) {
-                        resolve(request.response);
-                    }
-                    else {
-                        reject();
-                    }
-                }
-            }
-
-            // the progressCallback must be set before request.open()!
-            if (progressCallback) {
-                request.onprogress = progressCallback;
-            }
-
-            request.open("POST", uri);
-            request.setRequestHeader("content-type", "application/json");
-            request.responseType = "blob";
-            request.send(JSON.stringify(data));
-        });
-
-        return promise;
-    }
 
 }
 
