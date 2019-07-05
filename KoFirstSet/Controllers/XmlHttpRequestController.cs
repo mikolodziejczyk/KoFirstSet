@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace KoFirstSet.Controllers
@@ -51,6 +52,22 @@ namespace KoFirstSet.Controllers
 
             var r = new { id = id, path = path };
             return new JsonResult() { Data = r };
+        }
+
+        public ActionResult RetrievingFile()
+        {
+            return View();
+        }
+
+        // [HttpPost]
+        public ActionResult RetrievingFile_Post(int id)
+        {
+            string[] registeredNames = new string[] { "MyWork.jpg", "Tasks.jpg", "connections.svg" };
+            string fileName = registeredNames[id % registeredNames.Length];
+
+            string filePath = HostingEnvironment.MapPath(@"~\Content\Images\" + fileName);
+
+            return File(filePath, "application/octet-stream");
         }
     }
 }

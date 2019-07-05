@@ -217,6 +217,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\clients.svg" />
+    <Content Include="Content\images\config.svg" />
+    <Content Include="Content\images\connections.svg" />
+    <Content Include="Content\images\MyWork.jpg" />
+    <Content Include="Content\images\Tasks.jpg" />
     <Content Include="Content\jsTree\themes\default-dark\32px.png" />
     <Content Include="Content\jsTree\themes\default-dark\40px.png" />
     <Content Include="Content\jsTree\themes\default-dark\style.css" />
@@ -395,6 +400,7 @@
     <Content Include="Views\XmlHttpRequest\Index.cshtml" />
     <Content Include="Views\XmlHttpRequest\Fundamentals.cshtml" />
     <Content Include="Views\XmlHttpRequest\File.cshtml" />
+    <Content Include="Views\XmlHttpRequest\RetrievingFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -412,6 +418,7 @@
     <TypeScriptCompile Include="AppScripts\Message\message.ts" />
     <TypeScriptCompile Include="AppScripts\XmlHttpRequest\File\app.ts" />
     <TypeScriptCompile Include="AppScripts\XmlHttpRequest\Fundamentals\app.ts" />
+    <TypeScriptCompile Include="AppScripts\XmlHttpRequest\RetrievingFile\app.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -24,6 +24,7 @@ module.exports = {
         Fundamentals_Index: "./AppScripts/Fundamentals/app.ts",
         XmlHttpRequest_Fundamentals: "./AppScripts/XmlHttpRequest/Fundamentals/app.ts",
         XmlHttpRequest_File: "./AppScripts/XmlHttpRequest/File/app.ts",
+        XmlHttpRequest_RetrievingFile: "./AppScripts/XmlHttpRequest/RetrievingFile/app.ts",
         Polyfills: "./AppScripts/Polyfills/polyfills.ts"
     },
     output: {

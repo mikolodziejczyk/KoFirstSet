@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Retrieving a file";
+}
+
+<h2>Retrieving a file</h2>
+
+
+<div>
+    <input type="text" name="myId" id="myId" value="1" />
+</div>
+<div>
+    <button type="button" id="send-button">Send!</button>
+</div>
+
+<div>
+    <p>Preview:</p>
+    <img id="previewImg" src="" />
+</div>
+
+<script type="text/javascript" src="@Url.Content("~/dist/MyApp/Scripts/Polyfills.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/dist/MyApp/Scripts/XmlHttpRequest_RetrievingFile.js")"></script>
