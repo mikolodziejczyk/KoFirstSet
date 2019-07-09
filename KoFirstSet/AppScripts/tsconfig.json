@@ -18,7 +18,7 @@
     "sourceMap": true
   },
   "include": [
-    "**/*.ts", "XmlHttpRequest/RetrievingFile"
+    "**/*.ts"
   ],
   "importHelpers": true,
   "compileOnSave": false

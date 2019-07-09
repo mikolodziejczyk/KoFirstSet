@@ -69,5 +69,22 @@ namespace KoFirstSet.Controllers
 
             return File(filePath, "application/octet-stream");
         }
+
+        public ActionResult RetrievingHtml()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RetrievingHtml_Post(string data)
+        {
+            if (data == "Hello") throw new InvalidOperationException("Incorrect data.");
+
+            System.Threading.Thread.Sleep(3000);
+
+            ViewBag.data = data;
+
+            return View();
+        }
     }
 }
