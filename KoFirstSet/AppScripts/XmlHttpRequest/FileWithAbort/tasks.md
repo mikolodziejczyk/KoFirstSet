@@ -1,4 +1,4 @@
-﻿Uploading a file with XmlHttpRequest
+﻿Aborting a XmlHttpRequest
 ---
 
 Go to: http://localhost:50610/XmlHttpRequest/FileWithAbort
