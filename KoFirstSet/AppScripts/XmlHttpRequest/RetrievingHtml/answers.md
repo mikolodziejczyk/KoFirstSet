@@ -1,6 +1,6 @@
 ﻿Answers
 ---
-
+```
 postData(uri: string, data: any, timeout: number = 0): Promise<any> {
     let promise = new Promise<any>((resolve, reject) => {
         let r: XMLHttpRequest = new XMLHttpRequest();
@@ -31,3 +31,4 @@ postData(uri: string, data: any, timeout: number = 0): Promise<any> {
 
     return promise;
 }
+```
