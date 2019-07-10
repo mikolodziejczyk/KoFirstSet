@@ -321,6 +321,8 @@
     <Content Include="AppScripts\XmlHttpRequest\RetrievingFile\tasks.md" />
     <Content Include="AppScripts\XmlHttpRequest\RetrievingHtml\answers.md" />
     <Content Include="AppScripts\XmlHttpRequest\RetrievingHtml\tasks.md" />
+    <Content Include="AppScripts\XmlHttpRequest\FileWithAbort\answer.md" />
+    <Content Include="AppScripts\XmlHttpRequest\FileWithAbort\tasks.md" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -407,6 +409,7 @@
     <Content Include="Views\XmlHttpRequest\RetrievingFile.cshtml" />
     <Content Include="Views\XmlHttpRequest\RetrievingHtml.cshtml" />
     <Content Include="Views\XmlHttpRequest\RetrievingHtml_Post.cshtml" />
+    <Content Include="Views\XmlHttpRequest\FileWithAbort.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -422,6 +425,7 @@
     <TypeScriptCompile Include="AppScripts\Message\Index\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\Inner\app.ts" />
     <TypeScriptCompile Include="AppScripts\Message\message.ts" />
+    <TypeScriptCompile Include="AppScripts\XmlHttpRequest\FileWithAbort\app.ts" />
     <TypeScriptCompile Include="AppScripts\XmlHttpRequest\File\app.ts" />
     <TypeScriptCompile Include="AppScripts\XmlHttpRequest\RetrievingHtml\app.ts" />
     <TypeScriptCompile Include="AppScripts\XmlHttpRequest\Fundamentals\app.ts" />
