@@ -36,7 +36,6 @@ export class MyApp {
 
         let progressCallback = (event: ProgressEvent): void => {
             if (event.lengthComputable) {
-                // console.log(`Progress: ${event.loaded}/${event.total}`);
                 let message = sprintf("Uploading: %.1f%%", (event.loaded * 100) / event.total);
                 console.log(message);
 
@@ -48,7 +47,7 @@ export class MyApp {
 
          try {
             let promise: Promise<any>;
-            [promise, this.abort] = this.postData(url.toString(), file, timeout, progressCallback);
+            promise = this.postData(url.toString(), file, timeout, progressCallback);
             let r = await promise;
             console.log("Upload complete.");
             console.log(r);
@@ -61,19 +60,11 @@ export class MyApp {
          this.abort = null;
     };
 
-    postData(uri: string, blob: Blob, timeout: number = 0, progressCallback?: (event: ProgressEvent) => void): [Promise<any>, () => void] {
+    postData(uri: string, blob: Blob, timeout: number = 0, progressCallback?: (event: ProgressEvent) => void): Promise<any> {
         let abort: () => void;
         let promise = new Promise<any>((resolve, reject) => {
             let request: XMLHttpRequest = new XMLHttpRequest();
 
-            abort = () => {
-                request.abort();
-            }
-
-            request.onabort = (event: ProgressEvent) => {
-                console.log("Aborting the request.");
-                // seems that rejecting the promise will be handled by onreadystatechange
-            };
 
             request.onreadystatechange = function () {
                 console.log(request.readyState);
@@ -95,12 +86,11 @@ export class MyApp {
             }
 
             request.open("POST", uri);
-            request.timeout = timeout;
             request.setRequestHeader("content-type", "application/octet-stream");
             request.send(blob);
         });
 
-        return [promise, abort];
+        return promise;
     }
 
 

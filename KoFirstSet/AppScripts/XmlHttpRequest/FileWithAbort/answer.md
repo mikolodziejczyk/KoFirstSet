@@ -2,12 +2,15 @@
 ---
 
 ```
-fileChanged = async (event: UIEvent) => {
+
+    fileChanged = async (event: UIEvent) => {
     console.log("File selected");
 
-    let file: File = this.fileInput.files[0];
+        let file: File = this.fileInput.files[0];
+        let timeout: number = +this.timeoutInput.value;
+        this.stopButton.disabled = false;
 
-    let url: Url<QueryStringData> = new Url<QueryStringData>("http://localhost:50610/XmlHttpRequest/File_Post")
+    let url: Url<QueryStringData> = new Url<QueryStringData>("http://localhost:50610/XmlHttpRequest/FileWithAbort_Post")
     url.query.id = "2BC2D0DC-9860-4434-ACF9-529F0990F153";
     url.query.name = file.name;
 
@@ -25,22 +28,38 @@ fileChanged = async (event: UIEvent) => {
         }
     }
 
-    try {
-        let r = await this.postData(url.toString(), file, progressCallback);
+        try {
+        let promise: Promise<any>;
+        [promise, this.abort] = this.postData(url.toString(), file, timeout, progressCallback);
+        let r = await promise;
         console.log("Upload complete.");
         console.log(r);
     }
     catch (e) {
         console.log("Upload error.");
-    }
+        }
 
+        this.stopButton.disabled = true;
+        this.abort = null;
 };
 
-postData(uri: string, blob: Blob, progressCallback?: (event: ProgressEvent) => void): Promise<any> {
+postData(uri: string, blob: Blob, timeout: number = 0, progressCallback?: (event: ProgressEvent) => void): [Promise<any>, () => void] {
+    let abort: () => void;
     let promise = new Promise<any>((resolve, reject) => {
         let request: XMLHttpRequest = new XMLHttpRequest();
 
+        abort = () => {
+            request.abort();
+        }
+
+        //request.onabort = (event: ProgressEvent) => {
+        //    console.log("Aborting the request.");
+        //    // seems that rejecting the promise will be handled by onreadystatechange
+        //};
+
         request.onreadystatechange = function () {
+            console.log(request.readyState);
+
             if (request.readyState === 4) {
                 if (request.status === 200) {
                     let response = JSON.parse(request.responseText);
@@ -58,11 +77,12 @@ postData(uri: string, blob: Blob, progressCallback?: (event: ProgressEvent) => v
         }
 
         request.open("POST", uri);
+        request.timeout = timeout;
         request.setRequestHeader("content-type", "application/octet-stream");
         request.send(blob);
     });
 
-    return promise;
+    return [promise, abort];
 }
 
 ```

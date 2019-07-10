@@ -1,41 +1,25 @@
 ﻿Uploading a file with XmlHttpRequest
 ---
 
-Go to: http://localhost:50610/XmlHttpRequest/File
+Go to: http://localhost:50610/XmlHttpRequest/FileWithAbort
 
-You have XmlHttpRequestController.File_Post that accepts a posted file and two parameters, string id (anything to simulate the upload origin), string name - the name of the uploaded file.
+AppScripts/XmlHttpRequest/FileWithAbort/app.ts
 
-For names starting with K it returns an error.
+You have a postData() method that uploads a file, to MyDocuments. For names starting with K it returns an error.
+You want to test timeout and add abort capabilities.
 
-In AppScripts / XmlHttpRequest / File / app.ts:
+In AppScripts/XmlHttpRequest/FileWithAbort/app.ts:
 
-1. Create a method:
+1. Request timeout: The postData() takes timeout, use it in the request. Mind where to set the timeout.
+ - do you need any separate timeout handling? Do timeout apply to upload? Test it.
+
+2. Aborting a request<br/>
+   You have a MyApp.abort, that is called by the stop button.
+ - modify postData() so that it returns a tuple [Promise<any>, () => void]
+ - inside the postData() create a function (a fat-arrow method assigned to a variable) that aborts the request. Return this method along with the promise.
+ - when calling postData() assign the returned method to myApp.abort and wait for the promise
+ - do you need a separate abort handling? test?
+ - add dedicated abort handling limited to logging to the console:
 ```
-postData(uri: string, blob: Blob): Promise<any>
+console.log("Aborting the request.");
 ```
-This should send the specified blob to the uri as application/octet-stream and get JSON response.
-
-2. In fileChanged() you get file from the input[type=file]
-
-a) Prepare uri with a query string, use jsUrl
-Base is: "http://localhost:50610/XmlHttpRequest/File_Post"
-Id = "2BC2D0DC-9860-4434-ACF9-529F0990F153";
-Name = file.Name
-
-b) Call postData with error handling
-Log the json result to the console.
-
-2. Upload progress
- - from where do you get upload progress events? What is the difference to downloand progress?
- - where in XmlHttpRequest procedure can you specify upload progress event?
- - extend the postData method so that is takes an optional uploadProgress callback; the callback should receive the ProgressEvent and returns nothing
- - in ileChanged() implement this callback, check whether the progress can be determined at all and if so, log the progress in the form:
-```
-let message = sprintf("Uploading: %.1f%%", progressInPercent);
-console.log(message);
-```
-
-3. Controller theory
-- how do you receive a file (single posted blob) in the controller method?
-- where do you set limits on the file size?
-- is the complete file loaded into memory before being dispatched to the controller method?
