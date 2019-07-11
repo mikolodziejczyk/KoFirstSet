@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Form data";
+}
+
+<h2>Form data</h2>
+
+
+<div>
+    <input type="text" name="Name" id="Name" value="Some name" />
+</div>
+<div>
+    <input type="file" name="Files" id="Files" multiple="multiple" />
+</div>
+<div>
+    <button type="button" id="send-button">Send!</button>
+</div>
+
+
+<script type="text/javascript" src="@Url.Content("~/dist/MyApp/Scripts/Polyfills.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/dist/MyApp/Scripts/XmlHttpRequest_FormData.js")"></script>

@@ -108,5 +108,34 @@ namespace KoFirstSet.Controllers
             var r = new { id = id, path = path };
             return new JsonResult() { Data = r };
         }
+
+        public ActionResult FormData()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FormData_Post(string name)
+        {
+            List<string> files = new List<string>();
+
+            for(int i = 0; i< this.Request.Files.Count; i++ ) {
+                HttpPostedFileBase file = this.Request.Files[i];
+
+                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), file.FileName);
+
+                using (FileStream fs = System.IO.File.Create(path))
+                {
+                    file.InputStream.CopyTo(fs);
+                }
+
+                files.Add(path);
+            }
+
+
+
+            var r = new { file = files.ToArray(), name = name };
+            return new JsonResult() { Data = r };
+        }
     }
 }
