@@ -2,48 +2,14 @@
 ---
 
 ```
-fileChanged = async (event: UIEvent) => {
-    console.log("File selected");
-
-    let file: File = this.fileInput.files[0];
-
-    let url: Url<QueryStringData> = new Url<QueryStringData>("http://localhost:50610/XmlHttpRequest/File_Post")
-    url.query.id = "2BC2D0DC-9860-4434-ACF9-529F0990F153";
-    url.query.name = file.name;
-
-    console.log(`Posting to ${url.toString()}`);
-
-    let progressCallback = (event: ProgressEvent): void => {
-        if (event.lengthComputable) {
-            // console.log(`Progress: ${event.loaded}/${event.total}`);
-            let message = sprintf("Uploading: %.1f%%", (event.loaded * 100) / event.total);
-            console.log(message);
-
-        }
-        else {
-            console.log('Length not computable.');
-        }
-    }
-
-    try {
-        let r = await this.postData(url.toString(), file, progressCallback);
-        console.log("Upload complete.");
-        console.log(r);
-    }
-    catch (e) {
-        console.log("Upload error.");
-    }
-
-};
-
-postData(uri: string, blob: Blob, progressCallback?: (event: ProgressEvent) => void): Promise<any> {
+postData(uri: string, data: FormData): Promise<any> {
     let promise = new Promise<any>((resolve, reject) => {
-        let request: XMLHttpRequest = new XMLHttpRequest();
+        let r: XMLHttpRequest = new XMLHttpRequest();
 
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                if (request.status === 200) {
-                    let response = JSON.parse(request.responseText);
+        r.onreadystatechange = function () {
+            if (r.readyState === 4) {
+                if (r.status === 200) {
+                    let response = JSON.parse(r.responseText);
                     resolve(response);
                 }
                 else {
@@ -52,17 +18,32 @@ postData(uri: string, blob: Blob, progressCallback?: (event: ProgressEvent) => v
             }
         }
 
-        // the progressCallback must be set before request.open()!
-        if (progressCallback) {
-            request.upload.onprogress = progressCallback;
-        }
-
-        request.open("POST", uri);
-        request.setRequestHeader("content-type", "application/octet-stream");
-        request.send(blob);
+        r.open("POST", uri);
+        // do not set content-type
+        r.send(data);
     });
 
     return promise;
 }
 
+sendButtonClick = async (event: UIEvent) => {
+    console.log("Starting operation.");
+
+    let formData: FormData = new FormData(); 
+    formData.append("Name", this.nameInput.value);
+    for(let file of Array.from(this.filesInput.files)) {
+        formData.append("files", file);
+    }
+
+    try {
+        let r = await this.postData("http://localhost:50610/XmlHttpRequest/FormData_Post", formData);
+        console.log("Data retrieved.");
+        console.log(r);
+    }
+    catch (e) {
+        console.log("Data retrieval error.");
+    }
+
+
+};
 ```
