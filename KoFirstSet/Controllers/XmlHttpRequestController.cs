@@ -137,5 +137,32 @@ namespace KoFirstSet.Controllers
             var r = new { file = files.ToArray(), name = name };
             return new JsonResult() { Data = r };
         }
+
+        public ActionResult FileInChunks()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FileInChunks_Post(string id, string name, bool isEnd)
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), name);
+
+            if (System.IO.File.Exists(path)==false)
+            {
+                using (FileStream fs = System.IO.File.Create(path))
+                { }
+            }
+
+            using (FileStream fs = System.IO.File.OpenWrite(path))
+            {
+                fs.Seek(0, SeekOrigin.End);
+                this.Request.InputStream.Position = 0;
+                this.Request.InputStream.CopyTo(fs);
+            }
+
+            var r = new { id = id, path = path };
+            return new JsonResult() { Data = r };
+        }
     }
 }

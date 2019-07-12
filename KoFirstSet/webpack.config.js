@@ -28,6 +28,7 @@ module.exports = {
         XmlHttpRequest_RetrievingHtml: "./AppScripts/XmlHttpRequest/RetrievingHtml/app.ts",
         XmlHttpRequest_FileWithAbort: "./AppScripts/XmlHttpRequest/FileWithAbort/app.ts",
         XmlHttpRequest_FormData: "./AppScripts/XmlHttpRequest/FormData/app.ts",
+        XmlHttpRequest_FileInChunks: "./AppScripts/XmlHttpRequest/FileInChunks/app.ts",
         Polyfills: "./AppScripts/Polyfills/polyfills.ts"
     },
     output: {
