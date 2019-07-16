@@ -1,41 +1,51 @@
-﻿Uploading a file with XmlHttpRequest
+﻿Uploading a file in chunks with XmlHttpRequest
 ---
 
-Go to: http://localhost:50610/XmlHttpRequest/File
+Scenario: We want to be able to upload v. large files but without exceeding request size limits.
 
-You have XmlHttpRequestController.File_Post that accepts a posted file and two parameters, string id (anything to simulate the upload origin), string name - the name of the uploaded file.
 
-For names starting with K it returns an error.
+Go to: http://localhost:50610/XmlHttpRequest/FileInChunks
 
-In AppScripts / XmlHttpRequest / File / app.ts:
+You have XmlHttpRequestController.FileInChunks_Post that accepts a posted file and three parameters,
+- string id (anything to simulate the upload origin),
+- string name - the name of the uploaded file,
+- isEnd - this is the end of the upload
+The controller method appends to the file (the file is actually identified by its name but in real-life scenario it would be by the id). IsEnd does nothing but in real life it would trigger processing.
 
-1. Create a method:
-```
-postData(uri: string, blob: Blob): Promise<any>
-```
-This should send the specified blob to the uri as application/octet-stream and get JSON response.
 
-2. In fileChanged() you get file from the input[type=file]
+In AppScripts / XmlHttpRequest / FileInChunks / app.ts:
 
-a) Prepare uri with a query string, use jsUrl
-Base is: "http://localhost:50610/XmlHttpRequest/File_Post"
+In fileChanged() you get file from the input[type=file]
+
+1. Prepare variables
+- position - the current position in the file, initially 0
+- length - set it to the file length
+- chunkSize: number =  1 * 1024 * 1024;
+- isFinal: boolean = false;
+2. Wrap the whole uploading loop in try / catch
+
+3. Write the uploading loop (e.g. do / while)
+- add a variable (currentChunkSize), calculate it for the current iteration (chunkSize or less)
+- create a blob variable chunk, read a fragment of the file as "application/octet-stream"
+  - what are parameters - chunk length or end offset?
+- advance position
+- calculate is final
+- prepare uri with a query string, use jsUrl
+Base is: "http://localhost:50610/XmlHttpRequest/FileInChunks_Post"
 Id = "2BC2D0DC-9860-4434-ACF9-529F0990F153";
 Name = file.Name
-
-b) Call postData with error handling
+isEnd = isFinal;
+- call postData with error handling
 Log the json result to the console.
+- repeat the loop while isFinal is false
+- add some logging after each chunk and on success and error
+``
+console.log(`Posting to ${url.toString()}`);
+console.log("Upload complete.");
+console.log("Completed uploading");
+console.log("Upload error.");
+``
 
-2. Upload progress
- - from where do you get upload progress events? What is the difference to downloand progress?
- - where in XmlHttpRequest procedure can you specify upload progress event?
- - extend the postData method so that is takes an optional uploadProgress callback; the callback should receive the ProgressEvent and returns nothing
- - in ileChanged() implement this callback, check whether the progress can be determined at all and if so, log the progress in the form:
-```
-let message = sprintf("Uploading: %.1f%%", progressInPercent);
-console.log(message);
-```
 
 3. Controller theory
-- how do you receive a file (single posted blob) in the controller method?
-- where do you set limits on the file size?
-- is the complete file loaded into memory before being dispatched to the controller method?
+- if the way of receiving blob in the controller method different that when you receive the whole file?

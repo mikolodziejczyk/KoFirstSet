@@ -26,8 +26,6 @@ export class MyApp {
         let length: number = file.size;
         let chunkSize: number =  1 * 1024 * 1024;
 
-        console.log(`Uploading ${length} bytes with chunkSize ${chunkSize}.`)
-
         try {
 
             let isFinal: boolean = false;
@@ -39,19 +37,11 @@ export class MyApp {
                     currentChunkSize = length - position;
                 }
 
-
-                console.log(`Reading from ${position}, ${currentChunkSize} bytes.`);
-
-                // replace it with the asynchronous filereader
                 let chunk = file.slice(position, position+currentChunkSize, "application/octet-stream");
-
-                console.log("Read successfully");
 
                 position += currentChunkSize;
 
                 isFinal = position >= length;
-
-                console.log(`IsFinal=${isFinal}`);
 
                 // prepare additional data 
                 let url: Url<QueryStringData> = new Url<QueryStringData>("http://localhost:50610/XmlHttpRequest/FileInChunks_Post")

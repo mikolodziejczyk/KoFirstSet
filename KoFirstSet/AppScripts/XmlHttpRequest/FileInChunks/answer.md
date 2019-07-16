@@ -7,62 +7,49 @@ fileChanged = async (event: UIEvent) => {
 
     let file: File = this.fileInput.files[0];
 
-    let url: Url<QueryStringData> = new Url<QueryStringData>("http://localhost:50610/XmlHttpRequest/File_Post")
-    url.query.id = "2BC2D0DC-9860-4434-ACF9-529F0990F153";
-    url.query.name = file.name;
 
-    console.log(`Posting to ${url.toString()}`);
-
-    let progressCallback = (event: ProgressEvent): void => {
-        if (event.lengthComputable) {
-            // console.log(`Progress: ${event.loaded}/${event.total}`);
-            let message = sprintf("Uploading: %.1f%%", (event.loaded * 100) / event.total);
-            console.log(message);
-
-        }
-        else {
-            console.log('Length not computable.');
-        }
-    }
+    let position: number = 0;
+    let length: number = file.size;
+    let chunkSize: number =  1 * 1024 * 1024;
 
     try {
-        let r = await this.postData(url.toString(), file, progressCallback);
-        console.log("Upload complete.");
-        console.log(r);
+
+        let isFinal: boolean = false;
+
+        do {
+
+            let currentChunkSize = chunkSize;
+            if (position + currentChunkSize > length) {
+                currentChunkSize = length - position;
+            }
+
+            let chunk = file.slice(position, position+currentChunkSize, "application/octet-stream");
+
+            position += currentChunkSize;
+
+            isFinal = position >= length;
+
+            // prepare additional data 
+            let url: Url<QueryStringData> = new Url<QueryStringData>("http://localhost:50610/XmlHttpRequest/FileInChunks_Post")
+            url.query.id = "2BC2D0DC-9860-4434-ACF9-529F0990F153";
+            url.query.name = file.name;
+            url.query.isEnd = isFinal;
+
+            console.log(`Posting to ${url.toString()}`);
+
+
+            let r = await this.postData(url.toString(), chunk, null);
+            console.log("Upload complete.");
+            console.log(r);
+        }
+        while (isFinal === false)
+
+        console.log("Completed uploading");
     }
     catch (e) {
         console.log("Upload error.");
     }
 
 };
-
-postData(uri: string, blob: Blob, progressCallback?: (event: ProgressEvent) => void): Promise<any> {
-    let promise = new Promise<any>((resolve, reject) => {
-        let request: XMLHttpRequest = new XMLHttpRequest();
-
-        request.onreadystatechange = function () {
-            if (request.readyState === 4) {
-                if (request.status === 200) {
-                    let response = JSON.parse(request.responseText);
-                    resolve(response);
-                }
-                else {
-                    reject();
-                }
-            }
-        }
-
-        // the progressCallback must be set before request.open()!
-        if (progressCallback) {
-            request.upload.onprogress = progressCallback;
-        }
-
-        request.open("POST", uri);
-        request.setRequestHeader("content-type", "application/octet-stream");
-        request.send(blob);
-    });
-
-    return promise;
-}
 
 ```
