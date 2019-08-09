@@ -22,7 +22,9 @@
         "no-trailing-whitespace": false,
         "no-string-literal": false,
         "curly": false,
-        "member-access": false
+        "member-access": false,
+        "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-type"],
+        "no-consecutive-blank-lines": [true, 3]
     },
     "rulesDirectory": []
 }
