@@ -24,7 +24,9 @@
         "curly": false,
         "member-access": false,
         "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-type"],
-        "no-consecutive-blank-lines": [true, 3]
+        "no-consecutive-blank-lines": [true, 3],
+        "object-literal-sort-keys": false,
+        "object-literal-shorthand": false
     },
     "rulesDirectory": []
 }

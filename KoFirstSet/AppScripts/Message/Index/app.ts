@@ -6,7 +6,7 @@ export class App {
 
         $("#setDefaults").click(() => this.setDefaults());
 
-        var msg : Message = {
+        let msg: Message = {
             message: "Hello, this is a test message",
             code: "AB-12",
             id: 0,
@@ -15,7 +15,7 @@ export class App {
     }
 
     displayMessage(msg: Message) {
-        var s = sprintf("<p>%1$s (%2$s) %3$s</p>", msg.id, msg.code, msg.message);
+        let s = sprintf("<p>%1$s (%2$s) %3$s</p>", msg.id, msg.code, msg.message);
 
         $("#messages").append(s);
     }
